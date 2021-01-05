@@ -34,11 +34,18 @@
 <body>
     {{#if guest}}
     {{>guest-header}}
+    {{/if }}
+    {{#if admin}}
+    {{>admin-nav}}
+    {{>admin-header}}
     {{/if}}
 
     {{{body}}}
     {{#if guest}}
     {{>guest-footer}}
+    {{/if}}
+    {{#if admin}}
+    {{>admin-footer}}
     {{/if}}
     <script src="/js/jquery-1.11.2.min.js"></script>
     <script src="/js/common_scripts_min.js"></script>
