@@ -2,6 +2,17 @@ const express = require('express')
 const router = express.Router()
 const adminHelpers = require('../helpers/admin-helpers')
 const bcrypt = require('bcrypt')
+const nodemailer = require('nodemailer')
+
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAILPASSWORD
+    }
+});
+
 function adminValidate(req, res, next) {
     if (req.session.admin) {
         res.redirect('/admin/home')
@@ -39,15 +50,30 @@ router.get('/add-hostels', adminLogin, (req, res) => {
 })
 
 router.post('/addHostel', async (req, res) => {
+    const data = { ...req.body }
+    const mailOption = {
+        from: process.env.EMAIL,
+        to: 'mubashir.jr520@gmail.com',
+        subject: 'Your Hostelife registration is completed ',
+        text: 'your password :' + req.body.password + 'your email:' + req.body.email
+    }
     req.body.password = await bcrypt.hash(req.body.password, 10);
     console.log(req.body);
     const addToDb = await adminHelpers.addHostel(req.body)
+    console.log(data);
+    transporter.sendMail(mailOption, (err, data) => {
+        if (err) {
+            console.log('have an error' + err);
+        } else {
+            console.log('mail send success');
+        }
+    })
     res.json(addToDb)
 })
-router.get('/hostels', async(req, res) => {
+router.get('/hostels', async (req, res) => {
     const hostels = await adminHelpers.getHostels()
     console.log(hostels);
-    res.render('admin/hostels',{admin:true,hostel:true,hostels})
+    res.render('admin/hostels', { admin: true, hostel: true, hostels })
 })
 
 

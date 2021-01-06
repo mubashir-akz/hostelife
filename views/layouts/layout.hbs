@@ -15,20 +15,7 @@
     <title>FC Recom - Hotel and Bed&amp;Breakfast</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="/img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
-        href="/img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="/apple-touch-icon" type="image/x-icon" sizes="144x144"
-        href="/img/apple-touch-icon-144x144-precomposed.png">
-
-    <!-- BASE CSS -->
-    <link href="/css/base.css" rel="stylesheet">
-
-    <!-- SPECIFIC CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/DateTimePicker.css">
-    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+   
 </head>
 
 <body>
@@ -39,6 +26,10 @@
     {{>admin-nav}}
     {{>admin-header}}
     {{/if}}
+    {{!-- {{#if hostelowner}}
+    {{>hostel-header}}
+    {{>hostel-nav}}
+    {{/if}} --}}
 
     {{{body}}}
     {{#if guest}}
@@ -47,6 +38,9 @@
     {{#if admin}}
     {{>admin-footer}}
     {{/if}}
+    {{!-- {{#if hostelowner}}
+    {{>hostel-footer}}
+    {{/if}} --}}
     <script src="/js/jquery-1.11.2.min.js"></script>
     <script src="/js/common_scripts_min.js"></script>
     <script src="/assets/validate.js"></script>
