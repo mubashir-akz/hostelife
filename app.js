@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const ENV = require('dotenv').config()
 const indexRouter = require('./routes/guest');
-const usersRouter = require('./routes/hostel-owner');
+const hostelRouter = require('./routes/hostel-owner');
+const adminRouter = require('./routes/admin')
 const hbs = require('express-handlebars');
 const app = express();
 const db = require('./config/connection')
@@ -31,7 +32,8 @@ db.connect((err) => {
   else console.log('Database connected');
 })
 app.use('/', indexRouter);
-app.use('/hostel', usersRouter);
+app.use('/hostel', hostelRouter);
+app.use('/admin', adminRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

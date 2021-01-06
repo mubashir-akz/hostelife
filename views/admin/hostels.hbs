@@ -1,0 +1,51 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> Hostels</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Hostel
+                                    </th>
+                                    <th>
+                                        Owner
+                                    </th>
+                                    <th>
+                                        E-mail
+                                    </th>
+                                    <th class="text-right">
+                                        Edit
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    {{#each hostels}}
+                                    <tr>
+                                        <td>
+                                            {{this.HostelName}}
+                                        </td>
+                                        <td>
+                                            {{this.ownersName}}
+                                        </td>
+                                        <td>
+                                            {{this.email}}
+                                        </td>
+                                        <td class="text-right">
+                                            $98,615
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
