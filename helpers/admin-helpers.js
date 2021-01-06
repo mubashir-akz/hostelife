@@ -30,5 +30,13 @@ module.exports = {
                 )
             }
         })
+    },
+    getHostels: () => {
+        return new Promise(async (resolve, reject) => {
+            const hostels = await db.get().collection(collections.HOSTELS).find().toArray().then((data) => {
+                resolve(data)
+            }
+            )
+        })
     }
 }

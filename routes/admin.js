@@ -44,11 +44,16 @@ router.post('/addHostel', async (req, res) => {
     const addToDb = await adminHelpers.addHostel(req.body)
     res.json(addToDb)
 })
+router.get('/hostels', async(req, res) => {
+    const hostels = await adminHelpers.getHostels()
+    console.log(hostels);
+    res.render('admin/hostels',{admin:true,hostel:true,hostels})
+})
 
 
-
-router.post('/admin/logout',(req,res)=>{
+router.get('/logout', (req, res) => {
     req.session.admin = ''
+    req.logOut()
     res.redirect('/admin')
 })
 
