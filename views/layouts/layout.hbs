@@ -23,13 +23,13 @@
     {{>guest-header}}
     {{/if }}
     {{#if admin}}
-    {{>admin-nav}}
     {{>admin-header}}
+    {{>admin-nav}}
     {{/if}}
-    {{!-- {{#if hostelowner}}
-    {{>hostel-header}}
+    {{#if hostelowner}}
     {{>hostel-nav}}
-    {{/if}} --}}
+    {{>hostel-header}}
+    {{/if}}
 
     {{{body}}}
     {{#if guest}}
@@ -38,9 +38,9 @@
     {{#if admin}}
     {{>admin-footer}}
     {{/if}}
-    {{!-- {{#if hostelowner}}
+    {{#if hostelowner}}
     {{>hostel-footer}}
-    {{/if}} --}}
+    {{/if}}
     <script src="/js/jquery-1.11.2.min.js"></script>
     <script src="/js/common_scripts_min.js"></script>
     <script src="/assets/validate.js"></script>
