@@ -47,6 +47,9 @@ router.post('/addHostel', async (req, res) => {
 
 
 
-
+router.post('/admin/logout',(req,res)=>{
+    req.session.admin = ''
+    res.redirect('/admin')
+})
 
 module.exports = router;
