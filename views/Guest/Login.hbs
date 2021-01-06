@@ -12,7 +12,8 @@
             <a href="/auth/facebook" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign in with
                 <b>Facebook</b></a>
             <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a>
-            <a href="/google" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
+            <a href="/google" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Sign in with
+                <b>Google</b></a>
         </div>
         <div class="or-seperator"><i>or</i></div>
         <div class="form-group">
@@ -28,7 +29,8 @@
                         <span class="fa fa-user"></span>
                     </span>
                 </div>
-                <input type="email" class="form-control" name="email" placeholder="email" id="email" required="required">
+                <input type="email" class="form-control" name="email" placeholder="email" id="email"
+                    required="required">
             </div>
         </div>
         <div class="form-group">
@@ -38,7 +40,8 @@
                         <i class="fa fa-lock"></i>
                     </span>
                 </div>
-                <input type="password" class="form-control" name="password" placeholder="Password" id="password" required="required">
+                <input type="password" class="form-control" name="password" placeholder="Password" id="password"
+                    required="required">
             </div>
         </div>
         <div class="form-group">
@@ -55,18 +58,18 @@
 
 
 <script>
-    function validate(){
+    function validate() {
         const email = document.getElementById('email').value
         const password = document.getElementById('password').value
         $.ajax({
-            url:'/guest-login',
-            data:{
-                email,password
+            url: '/guest-login',
+            data: {
+                email, password
             },
-            method:'post',
-            success:(data)=>{
+            method: 'post',
+            success: (data) => {
                 console.log(data)
-                if(data.status == false){
+                if (data.status == false) {
                     document.getElementById('alert').style.display = 'block'
                 } else {
                     window.location.href = '/home'
