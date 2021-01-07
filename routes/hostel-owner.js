@@ -5,8 +5,11 @@ var router = express.Router();
 router.get('/home', function(req, res, next) {
   res.render('hostelOwner/home',{hostelowner:true});
 });
-router.get('',(req,res)=>{
+router.get('/',(req,res)=>{
   res.render('hostelOwner/login')
+})
+router.post('/login',(req,res)=>{
+  console.log(req.body);
 })
 router.post('/register',(req,res)=>{
   console.log(req.body);

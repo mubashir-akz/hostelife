@@ -118,7 +118,7 @@
                                             <i class="now-ui-icons users_circle-08"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="First Name...">
+                                    <input type="text" class="form-control" id="email" placeholder="Email...">
                                 </div>
                                 <div class="input-group no-border input-lg">
                                     <div class="input-group-prepend">
@@ -126,16 +126,16 @@
                                             <i class="now-ui-icons text_caps-small"></i>
                                         </span>
                                     </div>
-                                    <input type="text" placeholder="Last Name..." class="form-control" />
+                                    <input type="text" id="password" placeholder="Password..." class="form-control" />
                                 </div>
                             </div>
                             <div class="card-footer text-center">
-                                <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">Get Started</a>
-                                <div class="pull-left">
+                                <a onclick="validate()" class="btn btn-primary btn-round btn-lg btn-block">Get Started</a>
+                                {{!-- <div class="pull-left">
                                     <h6>
                                         <a href="#pablo" class="link">Create Account</a>
                                     </h6>
-                                </div>
+                                </div> --}}
                                 <div class="pull-right">
                                     <h6>
                                         <a href="#pablo" class="link">Need Help?</a>
@@ -193,6 +193,25 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
     <script src="/hostelOwnerLogin/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
+
+    <script>
+        function validate(){
+            const password = document.getElementById('password').value
+            const email = document.getElementById('email').value
+            console.log(password)
+            console.log(email)
+            $.ajax({
+                url:'/hostel/login',
+                method:'post',
+                data:{
+                    password,email
+                },
+                success:(data)=>{
+                    console.log(data)
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>
