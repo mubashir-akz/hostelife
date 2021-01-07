@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const hostelHelpers = require('../helpers/hostelHelpers')
-
+const base64 = require('base64-to-image')
 function loginValidation(req, res, next) {
   if (req.session.hostelowner) {
     next()
@@ -33,7 +33,8 @@ router.get('/profile', loginValidation, (req, res) => {
   console.log(req.session.hostelowner);
   res.render('hostelOwner/profile', { hostelowner: true, profile: true })
 })
-router.post('/addHostel',(req,res)=>{
+router.post('/addHostel', (req, res) => {
+  console.log(req.files,'ll');
   console.log(req.body);
 })
 

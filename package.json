@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "base64-to-image": "^1.0.2",
     "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "cookie-session": "^1.4.0",
