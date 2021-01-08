@@ -39,37 +39,10 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
-                    Material Kit </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    Hostelife </a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="dropdown nav-item">
-                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <i class="material-icons">apps</i> Components
-                        </a>
-                        <div class="dropdown-menu dropdown-with-icons">
-                            <a href="../index.html" class="dropdown-item">
-                                <i class="material-icons">layers</i> All Components
-                            </a>
-                            <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html"
-                                class="dropdown-item">
-                                <i class="material-icons">content_paste</i> Documentation
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.creative-tim.com/product/material-kit-pro"
-                            target="_blank">
-                            <i class="material-icons">unarchive</i> Upgrade to PRO
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" rel="tooltip" title="" data-placement="bottom"
                             href="https://twitter.com/CreativeTim" target="_blank"
@@ -103,7 +76,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="card card-login">
                         <form class="form" method="" action="">
                             <div class="card-header card-header-primary text-center">
-                                <h4 class="card-title">Login</h4>
+                                <h4 class="card-title">Register</h4>
                                 <div class="social-line">
                                     <a href="#pablo" class="btn btn-just-icon btn-link">
                                         <i class="fa fa-facebook-square"></i>
@@ -117,14 +90,35 @@ The above copyright notice and this permission notice shall be included in all c
                                 </div>
                             </div>
                             <p class="description text-center">Or Be Classical</p>
-                            <div class="card-body">
+                            <div class="card-body mb-5 pb-3">
+                                <div class="alert alert-danger" role="alert" id="alert" style="display: none;">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="now-ui-icons objects_support-17"></i>
+                                        </div>
+                                        <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="material-icons">face</i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="First Name...">
+                                    <input type="text" id="username" class="form-control" placeholder="First Name...">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">call</i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="mobile" placeholder="Mobile number...">
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -132,7 +126,7 @@ The above copyright notice and this permission notice shall be included in all c
                                             <i class="material-icons">mail</i>
                                         </span>
                                     </div>
-                                    <input type="email" class="form-control" placeholder="Email...">
+                                    <input type="email" id="email" class="form-control" placeholder="Email...">
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -140,11 +134,12 @@ The above copyright notice and this permission notice shall be included in all c
                                             <i class="material-icons">lock_outline</i>
                                         </span>
                                     </div>
-                                    <input type="password" class="form-control" placeholder="Password...">
+                                    <input type="password" id="password" class="form-control" placeholder="Password...">
                                 </div>
                             </div>
                             <div class="footer text-center">
-                                <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+                                <a onclick="validating(1)" class="btn btn-primary btn-link btn-wd btn-lg">Get
+                                    Started</a>
                             </div>
                         </form>
                     </div>
@@ -156,22 +151,22 @@ The above copyright notice and this permission notice shall be included in all c
                 <nav class="float-left">
                     <ul>
                         <li>
-                            <a href="https://www.creative-tim.com/">
+                            <a href="">
                                 Creative Tim
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.creative-tim.com/presentation">
+                            <a href="">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.creative-tim.com/blog">
+                            <a href="">
                                 Blog
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.creative-tim.com/license">
+                            <a href="">
                                 Licenses
                             </a>
                         </li>
@@ -182,7 +177,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, made with <i class="material-icons">favorite</i> by
-                    <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+                    <a target="_blank">Creative Tim</a> for a better web.
                 </div>
             </div>
         </footer>
@@ -199,6 +194,33 @@ The above copyright notice and this permission notice shall be included in all c
     <!--  Google Maps Plugin    -->
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="/guest/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+    <script>
+        function validating(m) {
+            const email = document.getElementById('email').value
+            const username = document.getElementById('username').value
+            const password = document.getElementById('password').value
+            const mobile = document.getElementById('mobile').value
+            console.log(email, username, password, mobile)
+            $.ajax({
+                url: '/guest-register',
+                data: {
+                    email,
+                    username,
+                    password,
+                    mobile
+                },
+                method: 'post',
+                success: (res) => {
+                    console.log(res.var)
+                    if (res.var == false) {
+                        document.getElementById('alert').style.display = 'block'
+                    } else {
+                        window.location.href = '/'
+                    }
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>

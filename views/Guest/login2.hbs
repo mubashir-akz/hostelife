@@ -50,26 +50,6 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    {{!-- <li class="dropdown nav-item">
-                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <i class="material-icons">apps</i> Components
-                        </a>
-                        <div class="dropdown-menu dropdown-with-icons">
-                            <a href="../index.html" class="dropdown-item">
-                                <i class="material-icons">layers</i> All Components
-                            </a>
-                            <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html"
-                                class="dropdown-item">
-                                <i class="material-icons">content_paste</i> Documentation
-                            </a>
-                        </div>
-                    </li> --}}
-                    {{!-- <li class="nav-item">
-                        <a class="nav-link" href="https://www.creative-tim.com/product/material-kit-pro"
-                            target="_blank">
-                            <i class="material-icons">unarchive</i> Upgrade to PRO
-                        </a>
-                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" rel="tooltip" title="" data-placement="bottom"
                             href="https://twitter.com/CreativeTim" target="_blank"
@@ -105,20 +85,24 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="card-header card-header-primary text-center">
                                 <h4 class="card-title">Login</h4>
                                 <div class="social-line">
-                                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                                    <a href="/auth/facebook" class="btn btn-just-icon btn-link">
                                         <i class="fa fa-facebook-square"></i>
                                     </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link">
-                                        <i class="fa fa-twitter"></i>
+                                    <a href="#" class="btn btn-just-icon btn-link">
+                                        <i class="fa fa-phone"></i>
                                     </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                                    <a href="/google" class="btn btn-just-icon btn-link">
                                         <i class="fa fa-google-plus"></i>
                                     </a>
                                 </div>
                             </div>
                             <p class="description text-center">Or Be Classical</p>
                             <div class="card-body">
-                                <div class="input-group">
+                                <div>
+                                    <div class="alert alert-danger alert-dismissible" style="display: none;" id="alert">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>E-mail </strong> already taken
+                                    </div>
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -126,7 +110,7 @@ The above copyright notice and this permission notice shall be included in all c
                                             <i class="material-icons">mail</i>
                                         </span>
                                     </div>
-                                    <input type="email" class="form-control" placeholder="Email...">
+                                    <input type="email" id="email" class="form-control" placeholder="Email...">
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -134,11 +118,11 @@ The above copyright notice and this permission notice shall be included in all c
                                             <i class="material-icons">lock_outline</i>
                                         </span>
                                     </div>
-                                    <input type="password" class="form-control" placeholder="Password...">
+                                    <input type="password" id="password" class="form-control" placeholder="Password...">
                                 </div>
                             </div>
                             <div class="footer text-center">
-                                <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+                                <a onclick="validate()" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
                             </div>
                         </form>
                     </div>
@@ -176,7 +160,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, made with <i class="material-icons">favorite</i> by
-                    <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+                    <a target="_blank">Creative Mubas</a> for a better web.
                 </div>
             </div>
         </footer>
@@ -193,6 +177,14 @@ The above copyright notice and this permission notice shall be included in all c
     <!--  Google Maps Plugin    -->
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="/guest/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+    <script>
+        function validate() {
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+            console.log(email,password)
+            
+        }
+    </script>
 </body>
 
 </html>
