@@ -54,7 +54,8 @@ module.exports = {
             const datas = {
                 name: data.username,
                 email: data.email,
-                password: data.password
+                password: data.password,
+                mobile: data.mobile
             }
             const verify = await db.get().collection(collections.GUEST_USERS).find({ email: datas.email }).toArray()
             if (verify == 0) {

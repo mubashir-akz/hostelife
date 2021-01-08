@@ -60,7 +60,6 @@ router.get('/home', userValidating, async(req, res) => {
 })
 router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }),
     async function(req, res) {
-        console.log(req.user, '...............');
         const data = await guestHelpers.addFb(req.user._json)
         console.log(data);
         req.session.users = data
@@ -71,9 +70,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
 router.post('/guest-register', async(req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     req.body.password = hashedPassword
-    console.log(req.body);
     const val = await guestHelpers.addToDb(req.body);
-    console.log(val);
     // if(val == false){
     res.json({ var: val })
         // } else {

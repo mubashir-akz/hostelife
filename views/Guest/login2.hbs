@@ -51,6 +51,12 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
+                        <a href="/register" class="nav-link"    >
+                            <i class="material-icons">add_box</i>Register
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" rel="tooltip" title="" data-placement="bottom"
                             href="https://twitter.com/CreativeTim" target="_blank"
                             data-original-title="Follow us on Twitter" rel="nofollow">
@@ -123,9 +129,17 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                             <div class="footer text-center">
                                 <a onclick="validate()" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+                                {{!-- <a href="/register" class="btn btn-primary btn-link btn-wd btn-lg">Register
+                                    here</a> --}}
                             </div>
                         </form>
+                        <div class="text-right">
+                            <p></p>
+                        </div>
                     </div>
+                    {{!-- <div class="footer ">
+                        <a onclick="validate()" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -181,8 +195,22 @@ The above copyright notice and this permission notice shall be included in all c
         function validate() {
             const email = document.getElementById('email').value
             const password = document.getElementById('password').value
-            console.log(email,password)
-            
+            console.log(email, password)
+            $.ajax({
+                url: '/guest-login',
+                data: {
+                    email, password
+                },
+                method: 'post',
+                success: (data) => {
+                    console.log(data)
+                    if (data.status == false) {
+                        document.getElementById('alert').style.display = 'block'
+                    } else {
+                        window.location.href = '/home'
+                    }
+                }
+            })
         }
     </script>
 </body>
