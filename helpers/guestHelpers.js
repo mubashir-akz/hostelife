@@ -3,6 +3,7 @@ const collections = require("../config/collections");
 const { ObjectId } = require("mongodb");
 const object = require("mongodb").ObjectID;
 const bcrypt = require('bcrypt')
+
 module.exports = {
     getHostelList: () =>
         new Promise(async (resolve, reject) => {
@@ -67,7 +68,6 @@ module.exports = {
     },
     verifyLogin: async (data) => {
         return new Promise(async (resolve, reject) => {
-            const response = {}
             const verify = await db.get().collection(collections.GUEST_USERS).find({ email: data.email }).toArray()
             console.log(verify);
             if (verify[0]) {

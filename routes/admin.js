@@ -53,7 +53,7 @@ router.post('/addHostel', async (req, res) => {
     const data = { ...req.body }
     const mailOption = {
         from: process.env.EMAIL,
-        to: 'mubashir.jr520@gmail.com',
+        to: req.body.email,
         subject: 'Your Hostelife registration is completed ',
         text: 'your password :' + req.body.password + 'your email:' + req.body.email
     }
