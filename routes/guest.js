@@ -34,7 +34,7 @@ function loginValidating(req, res, next) {
 require('../views/Guest/passport')
     /* GET home page. */
 router.get('/', loginValidating, (req, res, next) => {
-    res.render('Guest/Login', {})
+    res.render('Guest/login2', {})
 });
 router.get('/Register', loginValidating, (req, res) => {
     res.render('Guest/register')

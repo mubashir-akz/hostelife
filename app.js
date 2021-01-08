@@ -10,6 +10,7 @@ const adminRouter = require('./routes/admin')
 const hbs = require('express-handlebars');
 const app = express();
 const db = require('./config/connection')
+const fileUpload = require('express-fileupload')
 require('./views/Guest/passport')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +32,7 @@ db.connect((err) => {
   if (err) console.log('Database not connected Error is ' + err);
   else console.log('Database connected');
 })
+app.use(fileUpload())
 app.use('/', indexRouter);
 app.use('/hostel', hostelRouter);
 app.use('/admin', adminRouter);

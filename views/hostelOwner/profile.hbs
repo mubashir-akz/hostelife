@@ -8,23 +8,24 @@
                         <p class="card-category">Complete your profile</p>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/hostel/addHostel">
+                        <form method="POST" action="/hostel/addHostel" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Hostel </label>
+                                        <label class="bmd-label-floating">Hostel <span class="text-warning">*</span>
+                                        </label>
                                         <input type="text" name="hostel" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Hostel Type</label>
+                                        <label class="bmd-label-floating">Hostel Type <span class="text-warning">*</span></label>
                                         <input type="text" name="hostelType" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="">
-                                        <label class="bmd-label-floating">Image </label>
+                                        <label class="bmd-label-floating">Image <span class="text-warning">*</span> </label>
                                         <br>
                                         {{!-- <input type="email" class="form-control"> --}}
                                         <input type="file" name="image" id="image" required>
@@ -36,13 +37,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Rent per Month</label>
+                                        <label class="bmd-label-floating">Rent per Month <span class="text-warning">*</span></label>
                                         <input type="text" name="rentPerMonth" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Rent per Day</label>
+                                        <label class="bmd-label-floating">Rent per Day <span class="text-warning">*</span></label>
                                         <input type="text" name="rentPerDay" class="form-control" required>
                                     </div>
                                 </div>
@@ -50,7 +51,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Adress</label>
+                                        <label class="bmd-label-floating">Adress <span class="text-warning">*</span></label>
                                         <input type="text" name="address" class="form-control" required>
                                     </div>
                                 </div>
@@ -58,29 +59,29 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">City</label>
+                                        <label class="bmd-label-floating">City <span class="text-warning">*</span></label>
                                         <input type="text" name="city" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Country</label>
+                                        <label class="bmd-label-floating">Country <span class="text-warning">*</span></label>
                                         <input type="text" name="country" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Postal Code</label>
-                                        <input type="text" name="PostalCode" class="form-control" required>
+                                        <label class="bmd-label-floating">Postal Code <span class="text-warning">*</span></label>
+                                        <input type="text" name="postalCode" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Short Description</label>
+                                        <label>Short Description <span class="text-warning">*</span></label>
                                         <div class="form-group">
-                                            <textarea class="form-control" name="Description" rows="5"
+                                            <textarea class="form-control" name="description" rows="5"
                                                 required></textarea>
                                         </div>
                                     </div>
@@ -113,3 +114,4 @@
         </div>
     </div>
 </div>
+

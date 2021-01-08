@@ -1,5 +1,6 @@
 module.exports = {
     GUEST_USERS:'guestUsers',
     ADMIN:'admin',
-    HOSTELS: 'hostels'
+    HOSTELS: 'hostels',
+    HOSTELLIST:'hostel'
 }
