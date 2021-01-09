@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser')
 const logger = require('morgan');
 const ENV = require('dotenv').config()
 const indexRouter = require('./routes/guest');
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
   res.set('Cache-Control', 'no-store');
   next();
 });
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

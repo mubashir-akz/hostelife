@@ -6,6 +6,10 @@ const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const { Strategy } = require('passport');
 const expressSession = require('express-session')
+const request = require('request')
+let axios = require('axios')
+let FormData = require('form-data');
+var otp;
 router.use(passport.initialize());
 router.use(passport.session());
 router.use(cookieSession({
@@ -85,8 +89,58 @@ router.post('/guest-login', async (req, res) => {
     res.json(add)
 })
 
+router.get('/otp', (req, res) => {
+    console.log(this.otp);
+    const data = new FormData();
+    data.append('mobile', `+917034339837`);
+    data.append('sender_id', 'SMSINFO');
+    data.append('message', 'Your otp code is {code}');
+    data.append('expiry', '900');
 
+    const config = {
+        method: 'post',
+        url: 'https://d7networks.com/api/verifier/send',
+        headers: {
+            Authorization: 'Token 278b0d5aec962cac55a52a07175ce33c5b6fc0db',
+            ...data.getHeaders(),
+        },
+        data,
+    };
+    axios(config)
+        .then((response) => {
+            console.log(response);
+            otp = response.data.otp_id;
+            res.render('Guest/otp')
+        })
+        .catch(() => {
+            // req.flash('error', 'No user with this number');
+        });
+})
+router.post('/otp', (req, res) => {
+    console.log(otp);
+    let otp2 = req.body.otp
+    const data = new FormData();
+    data.append('otp_id', otp);
+    data.append('otp_code', otp2);
 
+    const config = {
+        method: 'post',
+        url: 'https://d7networks.com/api/verifier/verify',
+        headers: {
+            Authorization: 'Token 278b0d5aec962cac55a52a07175ce33c5b6fc0db',
+            ...data.getHeaders(),
+        },
+        data: data,
+    };
+    axios(config)
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            // req.flash('error', 'Something went wrong');
+            res.write('err')
+        });
+})
 
 
 
