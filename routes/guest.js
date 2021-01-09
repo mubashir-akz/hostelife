@@ -84,6 +84,14 @@ router.post('/guest-login', async (req, res) => {
     }
     res.json(add)
 })
+
+
+
+
+
+
+
+
 router.get('/logout', (req, res) => {
     req.session.users = ''
     req.logOut()
