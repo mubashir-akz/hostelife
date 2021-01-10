@@ -89,35 +89,41 @@ router.post('/guest-login', async (req, res) => {
     res.json(add)
 })
 
-router.get('/otp', (req, res) => {
-    console.log(this.otp);
-    const data = new FormData();
-    data.append('mobile', `+917034339837`);
-    data.append('sender_id', 'SMSINFO');
-    data.append('message', 'Your otp code is {code}');
-    data.append('expiry', '900');
+router.post('/otp', async (req, res) => {
+    const number = req.body.number
+    var check = await guestHelpers.checkOtpNumber(number)
+    req.session.users = check.data
+    console.log(number);
+    if (check.status) {
+        const data = new FormData();
+        data.append('mobile', +91 +number);
+        data.append('sender_id', 'SMSINFO');
+        data.append('message', 'Your otp code is {code}');
+        data.append('expiry', '900');
 
-    const config = {
-        method: 'post',
-        url: 'https://d7networks.com/api/verifier/send',
-        headers: {
-            Authorization: 'Token 278b0d5aec962cac55a52a07175ce33c5b6fc0db',
-            ...data.getHeaders(),
-        },
-        data,
-    };
-    axios(config)
-        .then((response) => {
-            console.log(response);
-            otp = response.data.otp_id;
-            res.render('Guest/otp')
-        })
-        .catch(() => {
-            // req.flash('error', 'No user with this number');
-        });
+        const config = {
+            method: 'post',
+            url: 'https://d7networks.com/api/verifier/send',
+            headers: {
+                Authorization: 'Token 04e97636d78f17669288543807b49cf2982a8cbd',
+                ...data.getHeaders(),
+            },
+            data,
+        };
+        axios(config)
+            .then((response) => {
+                console.log(response.data);
+                otp = response.data.otp_id;
+                res.json({ status: true })
+            })
+            .catch(() => {
+                // req.flash('error', 'No user with this number');
+            });
+    } else {
+        res.json({ status: false })
+    }
 })
-router.post('/otp', (req, res) => {
-    console.log(otp);
+router.post('/otpVerify', (req, res) => {
     let otp2 = req.body.otp
     const data = new FormData();
     data.append('otp_id', otp);
@@ -127,7 +133,7 @@ router.post('/otp', (req, res) => {
         method: 'post',
         url: 'https://d7networks.com/api/verifier/verify',
         headers: {
-            Authorization: 'Token 278b0d5aec962cac55a52a07175ce33c5b6fc0db',
+            Authorization: 'Token 04e97636d78f17669288543807b49cf2982a8cbd',
             ...data.getHeaders(),
         },
         data: data,
@@ -135,6 +141,12 @@ router.post('/otp', (req, res) => {
     axios(config)
         .then((response) => {
             console.log(response.data);
+            if(response.data.status == 'success'){
+                res.json({status:true})
+            } else {
+                req.session.user = ''
+                res.json({status:false})
+            }
         })
         .catch(function (error) {
             // req.flash('error', 'Something went wrong');

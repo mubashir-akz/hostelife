@@ -84,5 +84,14 @@ module.exports = {
                 resolve({ status: false })
             }
         })
+    }, checkOtpNumber: (data) => {
+        return new Promise(async (resolve, reject) => {
+            const verify = await db.get().collection(collections.GUEST_USERS).find({ mobile: data }).toArray()
+            if (verify[0]) {
+                resolve({ data: verify, status: true })
+            } else {
+                resolve({ status: false })
+            }
+        })
     }
 }

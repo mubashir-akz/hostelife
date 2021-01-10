@@ -1,2 +1,1 @@
-const p = {"a":'123'}
-console.log(p.a);
+console.log(6<5<7);
