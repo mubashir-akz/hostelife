@@ -54,7 +54,8 @@ module.exports = {
             const datas = {
                 name: data.username,
                 email: data.email,
-                password: data.password
+                password: data.password,
+                mobile: data.mobile
             }
             const verify = await db.get().collection(collections.GUEST_USERS).find({ email: datas.email }).toArray()
             if (verify == 0) {
@@ -80,6 +81,15 @@ module.exports = {
                 });
             } else {
                 console.log('not');
+                resolve({ status: false })
+            }
+        })
+    }, checkOtpNumber: (data) => {
+        return new Promise(async (resolve, reject) => {
+            const verify = await db.get().collection(collections.GUEST_USERS).find({ mobile: data }).toArray()
+            if (verify[0]) {
+                resolve({ data: verify, status: true })
+            } else {
                 resolve({ status: false })
             }
         })

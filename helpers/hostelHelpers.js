@@ -36,7 +36,9 @@ module.exports = {
     },
     addToUpdatedHostelProfile: (data) => {
         return new Promise(async (resolve, reject) => {
-            const updateDb = await db.get().collection(collections.HOSTELLIST).update({ ownerId: data.ownerId }, { $set: data })
+            const updateDb = await db.get().collection(collections.HOSTELLIST).updateOne({ ownerId: data.ownerId }, { $set: data }).then(()=>{
+                resolve()
+            })
         })
     }
 }
