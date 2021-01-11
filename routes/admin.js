@@ -76,7 +76,6 @@ router.get('/hostels', async (req, res) => {
     res.render('admin/hostels', { admin: true, hostel: true, hostels })
 })
 
-
 router.get('/logout', (req, res) => {
     req.session.admin = ''
     req.logOut()

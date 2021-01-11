@@ -57,9 +57,15 @@ router.get("/editHostelProfile", async (req, res) => {
 router.post('/addEditedHostelInformations', async (req, res) => {
   console.log(req.body);
   req.body.ownerId = req.session.hostelowner._id
-  const addToDb = hostelHelpers.addToUpdatedHostelProfile(req.body)
+  const addToDb = await hostelHelpers.addToUpdatedHostelProfile(req.body)
+  res.redirect('/hostel/profile')
 })
-
+router.get('/Guests',(req,res)=>{
+  res.render('hostelOwner/guests',{guestsAdd:true,hostelowner:true})
+})
+router.get('/addGuests',(req,res)=>{
+  res.render('hostelOwner/addGuests',{guestsAdd:true,hostelowner:true})
+})
 
 
 

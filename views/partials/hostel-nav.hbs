@@ -59,12 +59,21 @@
                         </a>
                     </li>
                     {{/if}}
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./tables.html">
+                    {{#if guestsAdd}}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/hostel/Guests">
                             <i class="material-icons">content_paste</i>
-                            <p>Table List</p>
+                            <p>Guests</p>
                         </a>
                     </li>
+                    {{else}}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/hostel/Guests">
+                            <i class="material-icons">content_paste</i>
+                            <p>Guests</p>
+                        </a>
+                    </li>
+                    {{/if}}
                     <li class="nav-item ">
                         <a class="nav-link" href="./typography.html">
                             <i class="material-icons">library_books</i>

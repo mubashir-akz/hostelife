@@ -4,32 +4,33 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Add Hostel</h4>
-                        <p class="card-category">Complete your profile</p>
+                        <h4 class="card-title">Add Guest</h4>
+                        <p class="card-category">Complete profile</p>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/hostel/addEditedHostelInformations" enctype="multipart/form-data">
+                        <form method="POST" action="/hostel/addHostel" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Hostel </label>
-                                        <input type="text" name="hostel" value="{{data.hostel}}" class="form-control"
-                                            required>
+                                        <label class="bmd-label-floating">Name <span class="text-warning">*</span>
+                                        </label>
+                                        <input type="text" name="hostel" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Hostel Type</label>
-                                        <input type="text" name="hostelType" value="{{data.hostelType}}"
-                                            class="form-control" required>
+                                        <label class="bmd-label-floating"> Age <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="hostelType" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="">
-                                        <label class="bmd-label-floating">Image </label>
+                                        <label class="bmd-label-floating">Id Proof <span class="text-warning">*</span>
+                                        </label>
                                         <br>
                                         {{!-- <input type="email" class="form-control"> --}}
-                                        <input type="file" name="image" value="" id="image" required>
+                                        <input type="file" name="image" id="image" required>
                                     </div>
                                 </div>
                                 <div>
@@ -38,58 +39,58 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Rent per Month</label>
-                                        <input type="text" name="rentPerMonth" value="{{data.rentPerMonth}}"
-                                            class="form-control" required>
+                                        <label class="bmd-label-floating">Purpose of stay<span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="rentPerMonth" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Rent per Day</label>
-                                        <input type="text" name="rentPerDay" value="{{data.rentPerDay}}"
-                                            class="form-control" required>
+                                        <label class="bmd-label-floating">Date of join <span
+                                                class="text-warning">*</span></label>
+                                        <input type="date" name="date" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Adress</label>
-                                        <input type="text" name="address" value="{{data.address}}" class="form-control"
-                                            required>
+                                        <label class="bmd-label-floating">Adress <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="address" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">City</label>
-                                        <input type="text" name="city" value="{{data.city}}" class="form-control"
-                                            required>
+                                        <label class="bmd-label-floating">City <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="city" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Country</label>
-                                        <input type="text" name="country" value="{{data.country}}" class="form-control"
-                                            required>
+                                        <label class="bmd-label-floating">Country <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="country" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Postal Code</label>
-                                        <input type="text" name="PostalCode" value="{{data.postalCode}}"
-                                            class="form-control" required>
+                                        <label class="bmd-label-floating">Postal Code <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="postalCode" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Short Description</label>
+                                        <label>Short Description <span class="text-warning">*</span></label>
                                         <div class="form-group">
-                                            <input type="text" value="{{data.Description}}" class="form-control" name="description" rows="5"
-                                                required></input>
+                                            <textarea class="form-control" name="description" rows="5"
+                                                required></textarea>
                                         </div>
                                     </div>
                                 </div>
