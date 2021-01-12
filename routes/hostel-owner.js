@@ -77,7 +77,8 @@ router.get('/Guests', async (req, res) => {
   res.render('hostelOwner/guests', { guestsAdd: true, hostelowner: true, data })
 })
 router.get('/addGuests', (req, res) => {
-  res.render('hostelOwner/addGuests', { guestsAdd: true, hostelowner: true })
+  res.render('hostelOwner/addGuests', { NumberExist: req.session.hostelowner.numberExistInGuestAdd, guestsAdd: true, hostelowner: true })
+  req.session.hostelowner.numberExistInGuestAdd = ''
 })
 
 router.post('/addGuest', async (req, res) => {
@@ -86,22 +87,26 @@ router.post('/addGuest', async (req, res) => {
   console.log(req.body);
   const image = req.files.idProof;
   const ops = await hostelHelpers.addGuestToDB(req.body)
-  console.log(ops);
-  image.mv('./public/guest-images/' + ops + '.jpg')
-  const mailOption = {
-    from: process.env.EMAIL,
-    to: req.body.email,
-    subject: 'Your Hostel registration is completed ',
-    text: 'your email :' + req.body.email + '     your mobile:' + req.body.GuestName
-  }
-  transporter.sendMail(mailOption, (err, data) => {
-    if (err) {
-      console.log('have an error' + err);
-    } else {
-      console.log('mail send success');
+  if (ops.status == false) {
+    req.session.hostelowner.numberExistInGuestAdd = true;
+    res.redirect('/hostel/addGuests')
+  } else {
+    image.mv('./public/guest-images/' + ops + '.jpg');
+    const mailOption = {
+      from: process.env.EMAIL,
+      to: req.body.email,
+      subject: 'Your Hostel registration is completed ',
+      text: 'your email :' + req.body.email + '     your mobile:' + req.body.Guestname
     }
-  })
-  res.redirect('/hostel/guests')
+    transporter.sendMail(mailOption, (err, data) => {
+      if (err) {
+        console.log('have an error' + err);
+      } else {
+        console.log('mail send success');
+      }
+    })
+    res.redirect('/hostel/guests')
+  }
 })
 
 

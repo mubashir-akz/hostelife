@@ -43,9 +43,15 @@ module.exports = {
     },
     addGuestToDB: (daat) => {
         return new Promise(async (resolve, reject) => {
-            const dbSave = await db.get().collection(collections.HOSTELGUESTS).insertOne(daat).then((data) => {
-                resolve(data.ops[0]._id)
-            })
+            const number = await db.get().collection(collections.HOSTELGUESTS).findOne({ mobile: daat.mobile })
+            console.log(number);
+            if (number) {
+                resolve({ status: false })
+            } else {
+                await db.get().collection(collections.HOSTELGUESTS).insertOne(daat).then((data) => {
+                    resolve({data:data.ops[0]._id,status:true})
+                })
+            }
         })
     },
     dataFromDb: (id) => {
