@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Room Type <span
                                                 class="text-warning">*</span></label>
-                                        <select id="cars" class="form-control" onchange="roomSelect(this)" name="cars">
+                                        <select id="cars" class="form-control" name="cars">
                                             <option value="single">single</option>
                                             <option value="double">Double</option>
                                             <option value="fourInOne">4 in one</option>
@@ -52,8 +52,7 @@
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Total Room <span
                                                 class="text-warning">*</span></label>
-                                        <input type="number" onchange="totalRooms(this)" name="totalRoom"
-                                            class="form-control" required>
+                                        <input type="number" name="totalRoom" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -101,6 +100,13 @@
                                 </div>
                             </div>
                             <div class="row" id="roomNumbers">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Country <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="country" class="form-control" required>
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
                             <div class="clearfix"></div>
@@ -111,18 +117,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    function roomSelect(event) {
-        console.log(event.value)
-    }
-    function totalRooms(event) {
-        var val = parseInt(event.value)
-        const divId = document.getElementById('roomNumbers').innerHTML
-        const html = '<div class="col-md-1"><div class="form-group"><label class="bmd-label-floating">Country<spanclass="text-warning">*</span></label><input type="text" name="country" class="form-control" required></div></div>';
-
-        for (i = 0; i < val; i++) {
-        }
-    }
-</script>
