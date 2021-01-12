@@ -19,15 +19,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Hostel Type <span class="text-warning">*</span></label>
+                                        <label class="bmd-label-floating">Hostel Type <span
+                                                class="text-warning">*</span></label>
                                         <input type="text" name="hostelType" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="">
-                                        <label class="bmd-label-floating">Image <span class="text-warning">*</span> </label>
+                                        <label class="bmd-label-floating">Image <span class="text-warning">*</span>
+                                        </label>
                                         <br>
-                                        {{!-- <input type="email" class="form-control"> --}}
                                         <input type="file" name="image" id="image" required>
                                     </div>
                                 </div>
@@ -37,13 +38,20 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Rent per Month <span class="text-warning">*</span></label>
-                                        <input type="text" name="rentPerMonth" class="form-control" required>
+                                        <label class="bmd-label-floating">Rent per Month <span
+                                                class="text-warning">*</span></label>
+                                        <select id="cars" class="form-control" onchange="roomSelect(this)" name="cars">
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="fiat">Fiat</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Rent per Day <span class="text-warning">*</span></label>
+                                        <label class="bmd-label-floating">Rent per Day <span
+                                                class="text-warning">*</span></label>
                                         <input type="text" name="rentPerDay" class="form-control" required>
                                     </div>
                                 </div>
@@ -51,7 +59,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Adress <span class="text-warning">*</span></label>
+                                        <label class="bmd-label-floating">Adress <span
+                                                class="text-warning">*</span></label>
                                         <input type="text" name="address" class="form-control" required>
                                     </div>
                                 </div>
@@ -59,19 +68,22 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">City <span class="text-warning">*</span></label>
+                                        <label class="bmd-label-floating">City <span
+                                                class="text-warning">*</span></label>
                                         <input type="text" name="city" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Country <span class="text-warning">*</span></label>
+                                        <label class="bmd-label-floating">Country <span
+                                                class="text-warning">*</span></label>
                                         <input type="text" name="country" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Postal Code <span class="text-warning">*</span></label>
+                                        <label class="bmd-label-floating">Postal Code <span
+                                                class="text-warning">*</span></label>
                                         <input type="text" name="postalCode" class="form-control" required>
                                     </div>
                                 </div>
@@ -86,6 +98,15 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row" id="roomNumbers">
+                                {{!-- <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Room No <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="hostelType" class="form-control" required>
+                                    </div>
+                                </div> --}}
                             </div>
                             <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
                             <div class="clearfix"></div>
@@ -115,3 +136,9 @@
     </div>
 </div>
 
+
+<script>
+    function roomSelect(event){
+        console.log(event.value)
+    }
+</script>
