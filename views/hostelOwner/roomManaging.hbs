@@ -12,16 +12,23 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Hostel <span class="text-warning">*</span>
+                                        <label class="bmd-label-floating">Total Rooms <span
+                                                class="text-warning">*</span>
                                         </label>
                                         <input type="text" name="hostel" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Hostel Type <span
+                                        <label class="bmd-label-floating">Room Type<span
                                                 class="text-warning">*</span></label>
-                                        <input type="text" name="hostelType" class="form-control" required>
+                                        {{!-- <input type="text" name="hostelType" class="form-control" required> --}}
+                                        <select name="cars" id="cars" class="form-control">
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -29,7 +36,7 @@
                                         <label class="bmd-label-floating">Image <span class="text-warning">*</span>
                                         </label>
                                         <br>
-                                        <input type="file" name="image" id="image" required>
+                                        <input type="text" class="form-control" name="image" id="image" required>
                                     </div>
                                 </div>
                                 <div>

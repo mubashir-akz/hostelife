@@ -74,12 +74,21 @@
                         </a>
                     </li>
                     {{/if}}
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./typography.html">
+                    {{#if room}}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/hostel/roomManaging">
                             <i class="material-icons">library_books</i>
-                            <p>Typography</p>
+                            <p>Room Management</p>
                         </a>
                     </li>
+                    {{else}}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/hostel/roomManaging">
+                            <i class="material-icons">library_books</i>
+                            <p>Room Management</p>
+                        </a>
+                    </li>
+                    {{/if}}
                     <li class="nav-item ">
                         <a class="nav-link" href="./icons.html">
                             <i class="material-icons">bubble_chart</i>

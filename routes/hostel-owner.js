@@ -110,7 +110,9 @@ router.post('/addGuest', async (req, res) => {
   }
 })
 
-
+router.get('/roomManaging',(req,res)=>{
+  res.render('hostelOwner/roomManaging',{hostelowner:true,room:true})
+})
 
 
 
