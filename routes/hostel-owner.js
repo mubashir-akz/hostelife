@@ -101,6 +101,7 @@ router.post('/addGuest', async (req, res) => {
     transporter.sendMail(mailOption, (err, data) => {
       if (err) {
         console.log('have an error' + err);
+        throw err;
       } else {
         console.log('mail send success');
       }
@@ -118,4 +119,5 @@ router.get('/logout', (req, res) => {
   req.logOut()
   res.redirect('/hostel')
 })
+
 module.exports = router;
