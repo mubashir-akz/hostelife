@@ -36,9 +36,24 @@ module.exports = {
     },
     addToUpdatedHostelProfile: (data) => {
         return new Promise(async (resolve, reject) => {
-            const updateDb = await db.get().collection(collections.HOSTELLIST).updateOne({ ownerId: data.ownerId }, { $set: data }).then(()=>{
+            const updateDb = await db.get().collection(collections.HOSTELLIST).updateOne({ ownerId: data.ownerId }, { $set: data }).then(() => {
                 resolve()
             })
         })
+    },
+    addGuestToDB: (daat) => {
+        return new Promise(async (resolve, reject) => {
+            const dbSave = await db.get().collection(collections.HOSTELGUESTS).insertOne(daat).then((data) => {
+                resolve(data.ops[0]._id)
+            })
+        })
+    },
+    dataFromDb: (id) => {
+        return new Promise(async (resolve, reject) => {
+            const data = await db.get().collection(collections.HOSTELGUESTS).find({ hostel: id }).toArray()
+            resolve(data)
+        })
     }
+
+
 }

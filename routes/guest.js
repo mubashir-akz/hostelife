@@ -14,9 +14,10 @@ router.use(passport.initialize());
 router.use(passport.session());
 router.use(cookieSession({
     name: 'tuto-session',
-    keys: ['key1', 'key2']
+    keys: ['key1', 'key2'],
+    
 }))
-router.use(expressSession({ secret: 'thisiskey' }))
+router.use(expressSession({ secret: 'thisiskey',saveUninitialized: true ,resave:false}))
 
 
 

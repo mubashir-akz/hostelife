@@ -8,20 +8,20 @@
                         <p class="card-category">Complete profile</p>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/hostel/addHostel" enctype="multipart/form-data">
+                        <form method="POST" action="/hostel/addGuest" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Name <span class="text-warning">*</span>
                                         </label>
-                                        <input type="text" name="hostel" class="form-control" required>
+                                        <input type="text" name="Guestname" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating"> Age <span
+                                        <label class="bmd-label-floating">Age<span
                                                 class="text-warning">*</span></label>
-                                        <input type="text" name="hostelType" class="form-control" required>
+                                        <input type="number" name="age" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -30,7 +30,7 @@
                                         </label>
                                         <br>
                                         {{!-- <input type="email" class="form-control"> --}}
-                                        <input type="file" name="image" id="image" required>
+                                        <input type="file" name="idProof" id="image" required>
                                     </div>
                                 </div>
                                 <div>
@@ -41,56 +41,39 @@
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Purpose of stay<span
                                                 class="text-warning">*</span></label>
-                                        <input type="text" name="rentPerMonth" class="form-control" required>
+                                        <input type="text" name="PurposeOfStay" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Date of join <span
                                                 class="text-warning">*</span></label>
-                                        <input type="date" name="date" class="form-control" required>
+                                        <input type="date" name="DateOfJoin" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">E-mail <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="email" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Mobile no<span
+                                                class="text-warning">*</span></label>
+                                        <input type="number" name="mobile" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Adress <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="address" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">City <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="city" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Country <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="country" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Postal Code <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="postalCode" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Short Description <span class="text-warning">*</span></label>
+                                        <label>anything More</label>
                                         <div class="form-group">
-                                            <textarea class="form-control" name="description" rows="5"
-                                                required></textarea>
+                                            <textarea class="form-control" name="more" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>

@@ -19,118 +19,47 @@
                                         Name
                                     </th>
                                     <th>
-                                        Country
+                                        age
                                     </th>
                                     <th>
-                                        City
+                                        Join data
                                     </th>
                                     <th>
-                                        Salary
+                                        Mobile
+                                    </th>
+                                    <th>
+                                        edit
+                                    </th>
+                                    <th>
+                                        edit
                                     </th>
                                 </thead>
                                 <tbody>
+                                    {{#each data}}
                                     <tr>
                                         <td>
-                                            1
+                                            {{@index}}
                                         </td>
                                         <td>
-                                            Dakota Rice
+                                            {{this.Guestname}}
                                         </td>
                                         <td>
-                                            Niger
+                                            {{this.age}}
                                         </td>
                                         <td>
-                                            Oud-Turnhout
+                                            {{this.DateOfJoin}}
                                         </td>
                                         <td class="text-primary">
-                                            $36,738
+                                            {{this.mobile}}
+                                        </td>
+                                        <td>
+                                            hello
+                                        </td>
+                                        <td>
+                                            hello
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            Minerva Hooper
-                                        </td>
-                                        <td>
-                                            Curaçao
-                                        </td>
-                                        <td>
-                                            Sinaai-Waas
-                                        </td>
-                                        <td class="text-primary">
-                                            $23,789
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            3
-                                        </td>
-                                        <td>
-                                            Sage Rodriguez
-                                        </td>
-                                        <td>
-                                            Netherlands
-                                        </td>
-                                        <td>
-                                            Baileux
-                                        </td>
-                                        <td class="text-primary">
-                                            $56,142
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            4
-                                        </td>
-                                        <td>
-                                            Philip Chaney
-                                        </td>
-                                        <td>
-                                            Korea, South
-                                        </td>
-                                        <td>
-                                            Overland Park
-                                        </td>
-                                        <td class="text-primary">
-                                            $38,735
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            Doris Greene
-                                        </td>
-                                        <td>
-                                            Malawi
-                                        </td>
-                                        <td>
-                                            Feldkirchen in Kärnten
-                                        </td>
-                                        <td class="text-primary">
-                                            $63,542
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            6
-                                        </td>
-                                        <td>
-                                            Mason Porter
-                                        </td>
-                                        <td>
-                                            Chile
-                                        </td>
-                                        <td>
-                                            Gloucester
-                                        </td>
-                                        <td class="text-primary">
-                                            $78,615
-                                        </td>
-                                    </tr>
+                                    {{/each}}
                                 </tbody>
                             </table>
                         </div>
