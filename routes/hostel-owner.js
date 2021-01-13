@@ -137,6 +137,10 @@ router.get('/vacateGuest/:userId', async (req, res) => {
   await hostelHelpers.markGuestAsVacated(req.params.userId)
   res.redirect('/hostel/guests')
 })
+router.get('/deleteRoom/:id',async(req,res)=>{
+  await hostelHelpers.deleteRoom(req.params.id)
+  res.redirect('/hostel/roomManaging')
+})
 
 router.get('/logout', (req, res) => {
   req.session.hostelowner = ''

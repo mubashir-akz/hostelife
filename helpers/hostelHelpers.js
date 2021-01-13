@@ -3,7 +3,7 @@ const collections = require("../config/collections");
 const { ObjectId } = require("mongodb");
 const object = require("mongodb").ObjectID;
 const bcrypt = require('bcrypt')
-
+const moment = require('moment')
 module.exports = {
     loginValidation: (data) => {
         return new Promise(async (resolve, reject) => {
@@ -107,14 +107,21 @@ module.exports = {
     },
     markGuestAsVacated: (id) => {
         new Promise(async (resolve, reject) => {
-            await db.get().collection(collections.HOSTELGUESTS).update({ _id: ObjectId(id) }, { $set: { status: 'Vacated', RoomNo: '--', } })
+            var time = moment().format('YYYY/MM/DD')
+            await db.get().collection(collections.HOSTELGUESTS).update({ _id: ObjectId(id) }, { $set: { status: 'Vacated',vacatedDate:time, RoomNo: '--', } })
             resolve()
         })
     },
     vacatedDataFromDb: (id) => {
         return new Promise(async(resolve, reject) => {
-            const data = await db.get().collection(collections.HOSTELGUESTS).find({ hostel: id, status: 'Vacated' }).toArray()
+            const data = await db.get().collection(collections.HOSTELGUESTS).find({ hostel: id, status: 'Vacated'}).toArray()
             resolve(data)
+        })
+    },
+    deleteRoom:(id)=>{
+        new Promise(async(resolve,reject)=>{
+            await db.get().collection(collections.ROOMS).remove({_id:ObjectId(id)})
+            resolve()
         })
     }
 }
