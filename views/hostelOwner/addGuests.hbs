@@ -51,14 +51,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Purpose of stay<span
                                                 class="text-warning">*</span></label>
                                         <input type="text" name="PurposeOfStay" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">RoomNO<span
+                                                class="text-warning">*</span></label>
+                                        <select name="RoomNo" id="roomno" class="form-control">
+                                            {{#each hosteRooms}}
+                                            <option value={{this.roomNo}}>{{this.roomNo}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Date of join <span
                                                 class="text-warning">*</span></label>

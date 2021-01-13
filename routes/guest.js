@@ -15,9 +15,9 @@ router.use(passport.session());
 router.use(cookieSession({
     name: 'tuto-session',
     keys: ['key1', 'key2'],
-    
+
 }))
-router.use(expressSession({ secret: 'thisiskey',saveUninitialized: true ,resave:false}))
+router.use(expressSession({ secret: 'thisiskey', saveUninitialized: true, resave: false }))
 
 
 
@@ -93,11 +93,11 @@ router.post('/guest-login', async (req, res) => {
 router.post('/otp', async (req, res) => {
     const number = req.body.number
     var check = await guestHelpers.checkOtpNumber(number)
-    req.session.users = check.data
+    req.session.usersErr = check.data
     console.log(number);
     if (check.status) {
         const data = new FormData();
-        data.append('mobile', +91 +number);
+        data.append('mobile', +91 + number);
         data.append('sender_id', 'SMSINFO');
         data.append('message', 'Your otp code is {code}');
         data.append('expiry', '900');
@@ -118,7 +118,6 @@ router.post('/otp', async (req, res) => {
                 res.json({ status: true })
             })
             .catch(() => {
-                // req.flash('error', 'No user with this number');
             });
     } else {
         res.json({ status: false })
@@ -142,11 +141,13 @@ router.post('/otpVerify', (req, res) => {
     axios(config)
         .then((response) => {
             console.log(response.data);
-            if(response.data.status == 'success'){
-                res.json({status:true})
+            if (response.data.status == 'success') {
+                req.session.users = req.session.usersErr
+                console.log(req.session.user);
+                res.json({ status: true })
             } else {
                 req.session.user = ''
-                res.json({status:false})
+                res.json({ status: false })
             }
         })
         .catch(function (error) {

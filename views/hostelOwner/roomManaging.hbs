@@ -19,19 +19,25 @@
                                         Room    
                                     </th>
                                     <th>
-                                        free Space
+                                        Total Space
+                                    </th>
+                                    <th>
+                                        Free space
                                     </th>
                                     <th>
                                         Gender
                                     </th>
-                                    <th>
+                                    {{!-- <th>
                                         Mobile
+                                    </th> --}}
+                                    <th>
+                                        Room Type
                                     </th>
                                     <th>
-                                        edit
+                                        Floor NO
                                     </th>
                                     <th>
-                                        edit
+                                        more
                                     </th>
                                 </thead>
                                 <tbody>
@@ -47,16 +53,19 @@
                                             {{this.roomCapacity}}
                                         </td>
                                         <td>
-                                            {{this.gender}}
+                                            {{this.roomFree}}
                                         </td>
-                                        <td class="text-primary">
-                                            {{this.roomNo}}
+                                        <td>
+                                            {{this.gender}}
                                         </td>
                                         <td>
                                             {{this.bedType}}
                                         </td>
                                         <td>
                                             {{floorNo}}
+                                        </td>
+                                        <td>
+                                            
                                         </td>
                                     </tr>
                                     {{/each}}

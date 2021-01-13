@@ -68,7 +68,7 @@ module.exports = {
             }
             else {
                 db.get().collection(collections.ROOMS).insertOne(data).then(() => {
-                    resolve({status:true})
+                    resolve({ status: true })
                 })
             }
         })
@@ -76,11 +76,34 @@ module.exports = {
     getRoomDetails: (data) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collections.ROOMS).find({ ownerId: data }).toArray().then((datas) => {
-                // console.log(datas);
+                datas.forEach(async(item)=>{
+                    await db.get().collection(collections.HOSTELGUESTS).find({RoomNo:item.roomNo}).toArray().then((data)=>{
+                        var lengthOfData = data.length
+                        item.roomFree = item.roomFree-lengthOfData
+                    })
+                })
+                console.log(datas);
                 resolve(datas)
             })
         })
+    },
+    getHostelRoomNo: (id) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collections.ROOMS).find({ ownerId: id }, { projection: { roomNo: 1, _id: 0, roomCapacity: 1 } }).toArray().then((data) => {
+                console.log(data);
+                var datas = []
+                data.forEach(async (item, index) => {
+                    await db.get().collection(collections.HOSTELGUESTS).find({ RoomNo: item.roomNo }).toArray().then((data) => {
+                        console.log(data.length)
+                        if (data.length < item.roomCapacity) {
+                            datas.push({ roomNo: item.roomNo })
+                        }
+                    })
+                })
+                resolve(datas)
+            })
+        }).catch((err) => {
+            console.log(err);
+        })
     }
-
-
 }

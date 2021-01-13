@@ -78,9 +78,10 @@ router.get('/Guests', async (req, res) => {
   console.log(data);
   res.render('hostelOwner/guests', { guestsAdd: true, hostelowner: true, data })
 })
-router.get('/addGuests', (req, res) => {
-  res.render('hostelOwner/addGuests', { NumberExist: req.session.hostelowner.numberExistInGuestAdd, guestsAdd: true, hostelowner: true })
-  req.session.hostelowner.numberExistInGuestAdd = ''
+router.get('/addGuests',async (req, res) => {
+  const hosteRooms = await hostelHelpers.getHostelRoomNo(req.session.hostelowner._id)
+  res.render('hostelOwner/addGuests', { NumberExist: req.session.hostelowner.numberExistInGuestAdd,hosteRooms, guestsAdd: true, hostelowner: true })
+  req.session.hostelowner.numberExistInGuestAdd = ''  
 })
 
 router.post('/addGuest', async (req, res) => {
@@ -103,12 +104,12 @@ router.post('/addGuest', async (req, res) => {
     transporter.sendMail(mailOption, (err, data) => {
       if (err) {
         console.log('have an error' + err);
-        throw err;
+        // throw err;
       } else {
         console.log('mail send success');
       }
     })
-    res.redirect('/hostel/guests')
+    res.redirect('/hostel/guests') 
   }
 })
 
