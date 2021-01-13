@@ -8,20 +8,34 @@
                         <p class="card-category">Complete profile</p>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/hostel/addHostel" enctype="multipart/form-data">
+                        <form method="POST" action="/hostel/addGuest" enctype="multipart/form-data">
                             <div class="row">
+                                {{#if NumberExist}}
+                                <div class="alert alert-danger" role="alert" id="alert-login">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="now-ui-icons objects_support-17"></i>
+                                        </div>
+                                        <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                                {{/if}}
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Name <span class="text-warning">*</span>
                                         </label>
-                                        <input type="text" name="hostel" class="form-control" required>
+                                        <input type="text" name="Guestname" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating"> Age <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="hostelType" class="form-control" required>
+                                        <label class="bmd-label-floating">Age<span class="text-warning">*</span></label>
+                                        <input type="number" name="age" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -30,7 +44,7 @@
                                         </label>
                                         <br>
                                         {{!-- <input type="email" class="form-control"> --}}
-                                        <input type="file" name="image" id="image" required>
+                                        <input type="file" name="idProof" id="image" required>
                                     </div>
                                 </div>
                                 <div>
@@ -41,84 +55,50 @@
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Purpose of stay<span
                                                 class="text-warning">*</span></label>
-                                        <input type="text" name="rentPerMonth" class="form-control" required>
+                                        <input type="text" name="PurposeOfStay" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Date of join <span
                                                 class="text-warning">*</span></label>
-                                        <input type="date" name="date" class="form-control" required>
+                                        <input type="date" name="DateOfJoin" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">E-mail <span
+                                                class="text-warning">*</span></label>
+                                        <input type="text" name="email" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Mobile no<span
+                                                class="text-warning">*</span></label>
+                                        <input type="number" name="mobile" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Adress <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="address" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">City <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="city" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Country <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="country" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Postal Code <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="postalCode" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Short Description <span class="text-warning">*</span></label>
+                                        <label>anything More</label>
                                         <div class="form-group">
-                                            <textarea class="form-control" name="description" rows="5"
-                                                required></textarea>
+                                            <textarea class="form-control" name="more" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                            <button type="submit" onclick="validateForm()" class="btn btn-primary pull-right">Update
+                                Profile</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
             </div>
-            {{!-- <div class="col-md-4">
-                <div class="card card-profile">
-                    <div class="card-avatar">
-                        <a href="#pablo">
-                            <img class="img" src="/hostelOwner/img/faces/marc.jpg" />
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-category">CEO / Co-Founder</h6>
-                        <h4 class="card-title">Alec Thompson</h4>
-                        <p class="card-description">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I
-                            love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 </div>

@@ -1,7 +1,15 @@
 var express = require('express');
 var router = express.Router();
 const hostelHelpers = require('../helpers/hostelHelpers')
+const nodemailer = require('nodemailer')
 
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAILPASSWORD
+  }
+});
 
 function loginValidation(req, res, next) {
   if (req.session.hostelowner) {
@@ -47,7 +55,9 @@ router.post('/addHostel', async (req, res) => {
   const image = req.files.image;
   image.mv('./public/hostel-images/' + req.session.hostelowner._id + '.jpg')
   req.body.ownerId = req.session.hostelowner._id
-  const dataStore = await hostelHelpers.hostelAddToDb(req.body)
+  const ops = await hostelHelpers.hostelAddToDb(req.body)
+  console.log(ops);
+  req.session.hostelowner.hostelId = ops._id
   res.redirect('/hostel/profile')
 })
 router.get("/editHostelProfile", async (req, res) => {
@@ -55,20 +65,72 @@ router.get("/editHostelProfile", async (req, res) => {
   res.render('hostelOwner/editProfile', { hostelowner: true, profile: true, data })
 })
 router.post('/addEditedHostelInformations', async (req, res) => {
+  console.log(req.files);
+  const image = req.files.image
+  image.mv('./public/hostel-images/' + req.session.hostelowner._id + '.jpg')
   console.log(req.body);
   req.body.ownerId = req.session.hostelowner._id
   const addToDb = await hostelHelpers.addToUpdatedHostelProfile(req.body)
   res.redirect('/hostel/profile')
 })
-router.get('/Guests',(req,res)=>{
-  res.render('hostelOwner/guests',{guestsAdd:true,hostelowner:true})
+router.get('/Guests', async (req, res) => {
+  const data = await hostelHelpers.dataFromDb(req.session.hostelowner._id)
+  console.log(data);
+  res.render('hostelOwner/guests', { guestsAdd: true, hostelowner: true, data })
 })
-router.get('/addGuests',(req,res)=>{
-  res.render('hostelOwner/addGuests',{guestsAdd:true,hostelowner:true})
+router.get('/addGuests', (req, res) => {
+  res.render('hostelOwner/addGuests', { NumberExist: req.session.hostelowner.numberExistInGuestAdd, guestsAdd: true, hostelowner: true })
+  req.session.hostelowner.numberExistInGuestAdd = ''
 })
 
+router.post('/addGuest', async (req, res) => {
+  console.log(req.files);
+  req.body.hostel = req.session.hostelowner._id;
+  console.log(req.body);
+  const image = req.files.idProof;
+  const ops = await hostelHelpers.addGuestToDB(req.body)
+  if (ops.status == false) {
+    req.session.hostelowner.numberExistInGuestAdd = true;
+    res.redirect('/hostel/addGuests')
+  } else {
+    image.mv('./public/guest-images/' + ops + '.jpg');
+    const mailOption = {
+      from: process.env.EMAIL,
+      to: req.body.email,
+      subject: 'Your Hostel registration is completed ',
+      text: 'your email :' + req.body.email + '     your mobile:' + req.body.Guestname
+    }
+    transporter.sendMail(mailOption, (err, data) => {
+      if (err) {
+        console.log('have an error' + err);
+        throw err;
+      } else {
+        console.log('mail send success');
+      }
+    })
+    res.redirect('/hostel/guests')
+  }
+})
 
+router.get('/addRooms', (req, res) => {
+  res.render('hostelOwner/addrooms', { hostelowner: true, room: true })
+})
 
+router.get('/roomManaging', async (req, res) => {
+  const hostelInfos = await hostelHelpers.getRoomDetails(req.session.hostelowner._id)
+  res.render('hostelOwner/roomManaging', { hostelowner: true, room: true, hostelInfos })
+})
+router.post('/addRooms', async (req, res) => {
+  req.body.roomCapacity = parseInt(req.body.roomCapacity)
+  req.body.ownerId = req.session.hostelowner._id
+  await hostelHelpers.addRoomsToDb(req.body).then((data) => {
+    if (data.status) {
+      res.json({ status: true })
+    } else {
+      res.json({ status: false })
+    }
+  })
+})
 
 
 router.get('/logout', (req, res) => {
@@ -76,4 +138,5 @@ router.get('/logout', (req, res) => {
   req.logOut()
   res.redirect('/hostel')
 })
+
 module.exports = router;

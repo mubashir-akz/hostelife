@@ -1,0 +1,71 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Simple Table</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                        <a href="/hostel/addRooms" class="btn  pull-right">Add Rooms</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        
+                                    </th>
+                                    <th>
+                                        Room    
+                                    </th>
+                                    <th>
+                                        free Space
+                                    </th>
+                                    <th>
+                                        Gender
+                                    </th>
+                                    <th>
+                                        Mobile
+                                    </th>
+                                    <th>
+                                        edit
+                                    </th>
+                                    <th>
+                                        edit
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    {{#each hostelInfos}}
+                                    <tr>
+                                        <td>
+                                            {{@index}}
+                                        </td>
+                                        <td>
+                                            {{this.roomNo}}
+                                        </td>
+                                        <td>
+                                            {{this.roomCapacity}}
+                                        </td>
+                                        <td>
+                                            {{this.gender}}
+                                        </td>
+                                        <td class="text-primary">
+                                            {{this.roomNo}}
+                                        </td>
+                                        <td>
+                                            {{this.bedType}}
+                                        </td>
+                                        <td>
+                                            {{floorNo}}
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

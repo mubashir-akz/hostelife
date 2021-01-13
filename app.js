@@ -12,6 +12,7 @@ const hbs = require('express-handlebars');
 const app = express();
 const db = require('./config/connection')
 const fileUpload = require('express-fileupload')
+const userRouter = require('./helpers/user-helpers')
 require('./views/Guest/passport')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,6 +39,7 @@ app.use(fileUpload())
 app.use('/', indexRouter);
 app.use('/hostel', hostelRouter);
 app.use('/admin', adminRouter);
+// app.use('/user',userRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
