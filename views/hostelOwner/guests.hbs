@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Simple Table</h4>
+                        <h4 class="card-title ">Active Guests</h4>
                         <p class="card-category"> Here is a subtitle for this table</p>
                         <a href="/hostel/addGuests" class="btn  pull-right">Add Guests</a>
                     </div>
@@ -19,19 +19,19 @@
                                         Name
                                     </th>
                                     <th>
-                                        age
-                                    </th>
-                                    <th>
-                                        Join data
+                                        Join Date
                                     </th>
                                     <th>
                                         Mobile
                                     </th>
                                     <th>
-                                        edit
+                                        RoomNo
                                     </th>
                                     <th>
-                                        edit
+                                        Status
+                                    </th>
+                                    <th>
+                                        Vacate
                                     </th>
                                 </thead>
                                 <tbody>
@@ -44,7 +44,73 @@
                                             {{this.Guestname}}
                                         </td>
                                         <td>
-                                            {{this.age}}
+                                            {{this.DateOfJoin}}
+                                        </td>
+                                        <td class="text-primary">
+                                            {{this.mobile}}
+                                        </td>
+                                        <td>
+                                            {{RoomNo}}
+                                        </td>
+                                        <td>
+                                            {{this.status}}
+                                        </td>
+                                        <td>
+                                            <a href="/hostel/vacateGuest/{{this._id}}" type="button"
+                                                class="btn btn-outline-primary btn-sm">Vacate</a>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Vacated Guests</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                        <a href="/hostel/addGuests" class="btn  pull-right">Add Guests</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Join Date
+                                    </th>
+                                    <th>
+                                        Mobile
+                                    </th>
+                                    <th>
+                                        RoomNo
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Vacate
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    {{#each vacated}}
+                                    <tr>
+                                        <td>
+                                            {{@index}}
+                                        </td>
+                                        <td>
+                                            {{this.Guestname}}
                                         </td>
                                         <td>
                                             {{this.DateOfJoin}}
@@ -56,7 +122,11 @@
                                             {{RoomNo}}
                                         </td>
                                         <td>
-                                            hello
+                                            {{this.status}}
+                                        </td>
+                                        <td>
+                                            <a href="/hostel/vacateGuest/{{this._id}}" type="button"
+                                                class="btn btn-outline-primary btn-sm">Vacate</a>
                                         </td>
                                     </tr>
                                     {{/each}}
@@ -64,6 +134,7 @@
                             </table>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
