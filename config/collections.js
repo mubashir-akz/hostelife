@@ -3,5 +3,6 @@ module.exports = {
     ADMIN:'admin',
     HOSTELS: 'hostels',
     HOSTELLIST:'hostel',
-    HOSTELGUESTS: 'guestsOfHostel'
+    HOSTELGUESTS: 'guestsOfHostel',
+    ROOMS : 'hostelRooms'
 }

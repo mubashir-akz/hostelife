@@ -4,115 +4,65 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Add Hostel</h4>
-                        <p class="card-category">Complete your profile</p>
+                        <h4 class="card-title ">Simple Table</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                        <a href="/hostel/addRooms" class="btn  pull-right">Add Rooms</a>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/hostel/addHostel" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Total Rooms <span
-                                                class="text-warning">*</span>
-                                        </label>
-                                        <input type="text" name="hostel" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Room Type<span
-                                                class="text-warning">*</span></label>
-                                        {{!-- <input type="text" name="hostelType" class="form-control" required> --}}
-                                        <select name="cars" id="cars" class="form-control">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="">
-                                        <label class="bmd-label-floating">Image <span class="text-warning">*</span>
-                                        </label>
-                                        <br>
-                                        <input type="text" class="form-control" name="image" id="image" required>
-                                    </div>
-                                </div>
-                                <div>
-                                </div>
-                            </div>
-                            {{!-- <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Room Type <span
-                                                class="text-warning">*</span></label>
-                                        <input type="number" name="roomType" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Total Room <span
-                                                class="text-warning">*</span></label>
-                                        <input type="number" name="totalRoom" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Adress <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="address" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">City <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="city" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Country <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="country" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Postal Code <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="postalCode" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Short Description <span class="text-warning">*</span></label>
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="description" rows="5"
-                                                required></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{!-- <div class="row" id="roomNumbers">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Country <span
-                                                class="text-warning">*</span></label>
-                                        <input type="text" name="country" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                            <div class="clearfix"></div>
-                        </form>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        
+                                    </th>
+                                    <th>
+                                        Room    
+                                    </th>
+                                    <th>
+                                        free Space
+                                    </th>
+                                    <th>
+                                        Gender
+                                    </th>
+                                    <th>
+                                        Mobile
+                                    </th>
+                                    <th>
+                                        edit
+                                    </th>
+                                    <th>
+                                        edit
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    {{#each hostelInfos}}
+                                    <tr>
+                                        <td>
+                                            {{@index}}
+                                        </td>
+                                        <td>
+                                            {{this.roomNo}}
+                                        </td>
+                                        <td>
+                                            {{this.roomCapacity}}
+                                        </td>
+                                        <td>
+                                            {{this.gender}}
+                                        </td>
+                                        <td class="text-primary">
+                                            {{this.roomNo}}
+                                        </td>
+                                        <td>
+                                            {{this.bedType}}
+                                        </td>
+                                        <td>
+                                            {{floorNo}}
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

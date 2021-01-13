@@ -25,7 +25,7 @@ module.exports = {
     hostelAddToDb: (data) => {
         return new Promise(async (resolve, reject) => {
             const addToDb = await db.get().collection(collections.HOSTELLIST).insertOne(data)
-            resolve()
+            resolve(addToDb.ops)
         })
     },
     getData: (data) => {
@@ -49,7 +49,7 @@ module.exports = {
                 resolve({ status: false })
             } else {
                 await db.get().collection(collections.HOSTELGUESTS).insertOne(daat).then((data) => {
-                    resolve({data:data.ops[0]._id,status:true})
+                    resolve({ data: data.ops[0]._id, status: true })
                 })
             }
         })
@@ -58,6 +58,27 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             const data = await db.get().collection(collections.HOSTELGUESTS).find({ hostel: id }).toArray()
             resolve(data)
+        })
+    },
+    addRoomsToDb: (data) => {
+        return new Promise(async (resolve, reject) => {
+            const ifRoomExist = await db.get().collection(collections.ROOMS).find({ ownerId: data.ownerId, roomNo: data.roomNo }).toArray()
+            if (ifRoomExist.length > 0) {
+                resolve({ status: false })
+            }
+            else {
+                db.get().collection(collections.ROOMS).insertOne(data).then(() => {
+                    resolve({status:true})
+                })
+            }
+        })
+    },
+    getRoomDetails: (data) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collections.ROOMS).find({ ownerId: data }).toArray().then((datas) => {
+                // console.log(datas);
+                resolve(datas)
+            })
         })
     }
 

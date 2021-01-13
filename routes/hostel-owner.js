@@ -55,7 +55,9 @@ router.post('/addHostel', async (req, res) => {
   const image = req.files.image;
   image.mv('./public/hostel-images/' + req.session.hostelowner._id + '.jpg')
   req.body.ownerId = req.session.hostelowner._id
-  await hostelHelpers.hostelAddToDb(req.body)
+  const ops = await hostelHelpers.hostelAddToDb(req.body)
+  console.log(ops);
+  req.session.hostelowner.hostelId = ops._id
   res.redirect('/hostel/profile')
 })
 router.get("/editHostelProfile", async (req, res) => {
@@ -110,10 +112,25 @@ router.post('/addGuest', async (req, res) => {
   }
 })
 
-router.get('/roomManaging',(req,res)=>{
-  res.render('hostelOwner/roomManaging',{hostelowner:true,room:true})
+router.get('/addRooms', (req, res) => {
+  res.render('hostelOwner/addrooms', { hostelowner: true, room: true })
 })
 
+router.get('/roomManaging', async (req, res) => {
+  const hostelInfos = await hostelHelpers.getRoomDetails(req.session.hostelowner._id)
+  res.render('hostelOwner/roomManaging', { hostelowner: true, room: true, hostelInfos })
+})
+router.post('/addRooms', async (req, res) => {
+  req.body.roomCapacity = parseInt(req.body.roomCapacity)
+  req.body.ownerId = req.session.hostelowner._id
+  await hostelHelpers.addRoomsToDb(req.body).then((data) => {
+    if (data.status) {
+      res.json({ status: true })
+    } else {
+      res.json({ status: false })
+    }
+  })
+})
 
 
 router.get('/logout', (req, res) => {
