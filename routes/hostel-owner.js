@@ -75,25 +75,26 @@ router.post('/addEditedHostelInformations', async (req, res) => {
 })
 router.get('/Guests', async (req, res) => {
   const data = await hostelHelpers.dataFromDb(req.session.hostelowner._id)
+  const vacated = await hostelHelpers.vacatedDataFromDb(req.session.hostelowner._id)
   console.log(data);
-  res.render('hostelOwner/guests', { guestsAdd: true, hostelowner: true, data })
+  console.log(vacated);
+  res.render('hostelOwner/guests', { guestsAdd: true,vacated, hostelowner: true, data })
 })
-router.get('/addGuests', (req, res) => {
-  res.render('hostelOwner/addGuests', { NumberExist: req.session.hostelowner.numberExistInGuestAdd, guestsAdd: true, hostelowner: true })
+router.get('/addGuests', async (req, res) => {
+  const hosteRooms = await hostelHelpers.getHostelRoomNo(req.session.hostelowner._id)
+  res.render('hostelOwner/addGuests', { NumberExist: req.session.hostelowner.numberExistInGuestAdd, hosteRooms, guestsAdd: true, hostelowner: true })
   req.session.hostelowner.numberExistInGuestAdd = ''
 })
 
 router.post('/addGuest', async (req, res) => {
-  console.log(req.files);
   req.body.hostel = req.session.hostelowner._id;
   console.log(req.body);
-  const image = req.files.idProof;
+  req.body.status = 'active'
   const ops = await hostelHelpers.addGuestToDB(req.body)
   if (ops.status == false) {
     req.session.hostelowner.numberExistInGuestAdd = true;
     res.redirect('/hostel/addGuests')
   } else {
-    image.mv('./public/guest-images/' + ops + '.jpg');
     const mailOption = {
       from: process.env.EMAIL,
       to: req.body.email,
@@ -103,7 +104,7 @@ router.post('/addGuest', async (req, res) => {
     transporter.sendMail(mailOption, (err, data) => {
       if (err) {
         console.log('have an error' + err);
-        throw err;
+        // throw err;
       } else {
         console.log('mail send success');
       }
@@ -131,7 +132,15 @@ router.post('/addRooms', async (req, res) => {
     }
   })
 })
-
+router.get('/vacateGuest/:userId', async (req, res) => {
+  console.log(req.params);
+  await hostelHelpers.markGuestAsVacated(req.params.userId)
+  res.redirect('/hostel/guests')
+})
+router.get('/deleteRoom/:id',async(req,res)=>{
+  await hostelHelpers.deleteRoom(req.params.id)
+  res.redirect('/hostel/roomManaging')
+})
 
 router.get('/logout', (req, res) => {
   req.session.hostelowner = ''

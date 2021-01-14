@@ -3,7 +3,7 @@ const collections = require("../config/collections");
 const { ObjectId } = require("mongodb");
 const object = require("mongodb").ObjectID;
 const bcrypt = require('bcrypt')
-
+const moment = require('moment')
 module.exports = {
     loginValidation: (data) => {
         return new Promise(async (resolve, reject) => {
@@ -56,7 +56,7 @@ module.exports = {
     },
     dataFromDb: (id) => {
         return new Promise(async (resolve, reject) => {
-            const data = await db.get().collection(collections.HOSTELGUESTS).find({ hostel: id }).toArray()
+            const data = await db.get().collection(collections.HOSTELGUESTS).find({ hostel: id, status: 'active' }).toArray()
             resolve(data)
         })
     },
@@ -68,19 +68,60 @@ module.exports = {
             }
             else {
                 db.get().collection(collections.ROOMS).insertOne(data).then(() => {
-                    resolve({status:true})
+                    resolve({ status: true })
                 })
             }
         })
     },
-    getRoomDetails: (data) => {
-        return new Promise((resolve, reject) => {
-            db.get().collection(collections.ROOMS).find({ ownerId: data }).toArray().then((datas) => {
-                // console.log(datas);
-                resolve(datas)
+    getRoomDetails: (dat) => {
+        return new Promise(async (resolve, reject) => {
+            await db.get().collection(collections.ROOMS).find({ ownerId: dat }).toArray().then(async (datas) => {
+                var datass = []
+                await datas.forEach(async (item) => {
+                    var data = await db.get().collection(collections.HOSTELGUESTS).find({ RoomNo: item.roomNo }).toArray()
+                    var lengthOfData = data.length
+                    item.roomFree = item.roomCapacity - lengthOfData
+                    datass.push(item)
+                })
+                console.log(datass);
+                resolve(datass)
             })
         })
+    },
+    getHostelRoomNo: (id) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collections.ROOMS).find({ ownerId: id, }, { projection: { roomNo: 1, _id: 0, roomCapacity: 1 } }).toArray().then((data) => {
+                var datas = []
+                data.forEach(async (item, index) => {
+                    await db.get().collection(collections.HOSTELGUESTS).find({ RoomNo: item.roomNo }).toArray().then((data) => {
+                        if (data.length < item.roomCapacity) {
+                            datas.push({ roomNo: item.roomNo })
+                        }
+                    })
+                })
+                resolve(datas)
+            })
+        }).catch((err) => {
+            console.log(err);
+        })
+    },
+    markGuestAsVacated: (id) => {
+        new Promise(async (resolve, reject) => {
+            var time = moment().format('YYYY/MM/DD')
+            await db.get().collection(collections.HOSTELGUESTS).update({ _id: ObjectId(id) }, { $set: { status: 'Vacated',vacatedDate:time, RoomNo: '--', } })
+            resolve()
+        })
+    },
+    vacatedDataFromDb: (id) => {
+        return new Promise(async(resolve, reject) => {
+            const data = await db.get().collection(collections.HOSTELGUESTS).find({ hostel: id, status: 'Vacated'}).toArray()
+            resolve(data)
+        })
+    },
+    deleteRoom:(id)=>{
+        new Promise(async(resolve,reject)=>{
+            await db.get().collection(collections.ROOMS).remove({_id:ObjectId(id)})
+            resolve()
+        })
     }
-
-
 }

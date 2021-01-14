@@ -1,1 +1,3 @@
-console.log(6<5<7);
+const moment = require('moment')
+
+console.log(moment().format('YYYY/MM/DD'))

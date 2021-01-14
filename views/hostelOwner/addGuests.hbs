@@ -32,33 +32,35 @@
                                         <input type="text" name="Guestname" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Age<span class="text-warning">*</span></label>
                                         <input type="number" name="age" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="">
-                                        <label class="bmd-label-floating">Id Proof <span class="text-warning">*</span>
-                                        </label>
-                                        <br>
-                                        {{!-- <input type="email" class="form-control"> --}}
-                                        <input type="file" name="idProof" id="image" required>
                                     </div>
                                 </div>
                                 <div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Purpose of stay<span
                                                 class="text-warning">*</span></label>
                                         <input type="text" name="PurposeOfStay" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">RoomNO<span
+                                                class="text-warning">*</span></label>
+                                        <select name="RoomNo" id="roomno" class="form-control">
+                                            {{#each hosteRooms}}
+                                            <option value={{this.roomNo}}>{{this.roomNo}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Date of join <span
                                                 class="text-warning">*</span></label>
